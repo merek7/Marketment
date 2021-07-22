@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!
+{% endblock %}
+
+{% block body %}
+	<div class="container d-flex flex-column">
+		<div class="row align-items-center justify-content-center g-0 min-vh-100">
+			<div
+				class="col-12 col-md-8 col-lg-6 col-xxl-4 py-8 py-xl-0">
+				<!-- Card -->
+				<div
+					class="card smooth-shadow-md">
+					<!-- Card body -->
+					<div class="card-body p-6">
+						<div class="mb-4 brand">
+
+							<a href="#"><img src="{{asset('assets/img/logo.png')}}" style=' width:100%;' class="mb-2"/></a>
+							<p class="mb-6">Entrez Vos identifiant de connexion</p>
+						</div>
+
+						<form method="post">
+							{% if error %}
+								<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+							{% endif %}
+
+							{% if app.user %}
+								<div class="mb-3">
+									You are logged in as
+									{{ app.user.username }},
+									<a href="{{ path('logout') }}">Logout</a>
+								</div>
+							{% endif %}
+							<div class="mb-3">
+								<label for="inputemail" class="form-label">email</label>
+								<input type="email" value="{{ last_username }}" id="email" class="form-control" name="email" placeholder="Entrez votre adrresse Email" required autofocus/>
+							</div>
+							<div class="mb-3">
+								<label for="inputpassword" class="form-label">Password</label>
+								<input type="password" id="password" class="form-control" name="password" autocomplete="current-password" required=""/>
+							</div>
+							<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+							<div class="checkbox mb-3">
+								<label>
+									<input type="checkbox" name="_remember_me">
+									Se souvenir de Moi
+								</label>
+							</div>
+
+
+							<div>
+								<!-- Button -->
+								<div class="d-grid">
+									<button type="submit" class="btn btn-primary">
+										Sign in
+									</button>
+								</div>
+
+								<div class="d-md-flex justify-content-between mt-4">
+									<div class="mb-2 mb-md-0">
+										<a href="{{ path('register')}}" class="fs-5">Creez un compte
+										</a>
+									</div>
+									<div>
+										<a href="forget-password.html" class="text-inherit fs-5">Forgot your password?</a>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
