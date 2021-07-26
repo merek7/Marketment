@@ -3,156 +3,159 @@
 {% endblock %}
 
 {% block body %}
+	<body>
+		<div id="db-wrapper">
+			{% include './home/nav.html.twig' %}
+			<section>
+				<div class="container d-flex flex-column">
+					<div class="row align-items-center justify-content-center
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		        min-vh-100">
+						<div
+							class="col-12 col-md-8 col-lg-6 col-xxl-4 py-8 py-xl-0">
+							<!-- Card -->
+							<div
+								class="card smooth-shadow-md">
+								<!-- Card body -->
+								<div class="card-body p-6">
+									<div class="mb-4">
+										<a href="#"><img src="{{asset('assets/img/logo.png')}}" style=' width:100%;' class="mb-2" alt=""></a>
+										<p class="mb-6">Entrez les informations de l'utilisateur</p>
+									</div>
 
-	{% include './home/nav.html.twig' %}
-	<div class="container d-flex flex-column">
-		<div class="row align-items-center justify-content-center g-0
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																		        min-vh-100">
-			<div
-				class="col-12 col-md-8 col-lg-6 col-xxl-4 py-8 py-xl-0">
-				<!-- Card -->
-				<div
-					class="card smooth-shadow-md">
-					<!-- Card body -->
-					<div class="card-body p-6">
-						<div class="mb-4">
-							<a href="#"><img src="{{asset('assets/img/logo.png')}}" style=' width:100%;' class="mb-2" alt=""></a>
-							<p class="mb-6">Entrez les informations de l'utilisateur</p>
-						</div>
+									{{ form_start(registrationForm) }}
+									<div class="mb-3">
 
-						{{ form_start(registrationForm) }}
-						<div class="mb-3">
-
-							{{
+										{{
                                 form_label(registrationForm.name, null,
                                 {
                                     'label': 'Nom',
                                     'label_attr': {'class': 'form-label'}
                                 })
                             }}
-							{{
+										{{
                                 form_widget(registrationForm.name,
                                 {
                                     'attr': {'class': 'form-control'}
                                 })
                             }}
-						</div>
-						<div
-							class="mb-3">
-							{# <label for="registration_form_name" class="form-label">User Name</label> #}
-							{{
+									</div>
+									<div
+										class="mb-3">
+										{# <label for="registration_form_name" class="form-label">User Name</label> #}
+										{{
                                 form_label(registrationForm.prenom, null,
                                 {
                                     'label': 'Prenom',
                                     'label_attr': {'class': 'form-label'}
                                 })
                             }}
-							{{
+										{{
                                 form_widget(registrationForm.prenom,
                                 {
                                     'attr': {'class': 'form-control'}
                                 })
                             }}
-						</div>
-						<div class="mb-3">
-							{{
+									</div>
+									<div class="mb-3">
+										{{
                                 form_label(registrationForm.datenaiss, null,
                                 {
                                     'label': 'Date de Naissance',
                                     'label_attr': {'class': 'form-label'}
                                 })
                             }}
-							{{
+										{{
                                 form_widget(registrationForm.datenaiss,
                                 {
                                     'attr': {'class': 'form-control'}
                                 })
                             }}
-						</div>
-						<div class="mb-3">
-							{{form_label(registrationForm.roles, null,
+									</div>
+									<div class="mb-3">
+										{{form_label(registrationForm.roles, null,
 							{
 								'label': 'Poste'
 							}
 							)}}
-							{{form_widget(registrationForm.roles)}}
-						</div>
-						<div class="mb-3">
-							{{
+										{{form_widget(registrationForm.roles)}}
+									</div>
+									<div class="mb-3">
+										{{
                                 form_label(registrationForm.email, null,
                                 {
                                     'label': 'Adresse Email',
                                     'label_attr': {'class': 'form-label'}
                                 })
                             }}
-							{{
+										{{
                                 form_widget(registrationForm.email,
                                 {
                                     'attr': {'class': 'form-control'}
                                 })
                             }}
 
-							{{form_errors(registrationForm.email)}}
+										{{form_errors(registrationForm.email)}}
 
-						</div>
-						<div class="mb-3">
-							{{
+									</div>
+									<div class="mb-3">
+										{{
                                 form_label(registrationForm.telephone, null,
                                 {
                                     'label': 'Numero de telephone',
                                     'label_attr': {'class': 'form-label'}
                                 })
                             }}
-							{{
+										{{
                                 form_widget(registrationForm.telephone,
                                 {
                                     'attr': {'class': 'form-control'}
                                 })
                             }}
-						</div>
+									</div>
 
-						<div class="mb-3">
-							{{
+									<div class="mb-3">
+										{{
                                 form_label(registrationForm.plainPassword, null,
                                 {
                                     'label': 'Mots de passe',
                                     'label_attr': {'class': 'form-label'}
                                 })
                             }}
-							{{
+										{{
                                 form_widget(registrationForm.plainPassword,
                                 {
                                     'attr': {'class': 'form-control'}
                                 })
                             }}
-							{{form_errors(registrationForm.plainPassword)}}
+										{{form_errors(registrationForm.plainPassword)}}
 
-						</div>
+									</div>
 
-						<div class="mb-3">
-							{{
+									<div class="mb-3">
+										{{
                                 form_label(registrationForm.agreeTerms, null,
                                 {
                                     'label': 'J\' acepte les conditions d\' utilisation',
                                     'label_attr': {'class': 'form-check-label'}
                                 })
                             }}
-							{{
+										{{
                                 form_widget(registrationForm.agreeTerms,
                                 {
                                     'attr': {'class': 'form-check-input'}
                                 })
                             }}
-						</div>
-						<div class="d-grid">
-							<button type="submit" class="btn btn-primary">Enregistrer</button>
-						</div>
+									</div>
+									<div class="d-grid">
+										<button type="submit" class="btn btn-primary">Enregistrer</button>
+									</div>
 
 
-						{{ form_end(registrationForm) }}
+									{{ form_end(registrationForm) }}
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-{% endblock %}
+			</section>
+		{% endblock %}

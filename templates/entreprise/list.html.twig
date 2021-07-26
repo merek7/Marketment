@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Tableau de bord
+{% block title %}Liste des Entreprise
 {% endblock %}
-
 {% block body %}
 	<body>
 		<div
 			id="db-wrapper">
 			<!-- navbar vertical -->
 			{% include 'home/nav.html.twig' %}
-			<h1 class="display-2 text-center">Liste des Agents Marketing</h1>
+			<h1 class="display-2 text-center">Liste des Entreprise</h1>
 			<table class="table table-bordered ">
 				<thead>
 					<tr class="table-secondary">
 						<th scope="col">Nom</th>
-						<th scope="col">Prenom</th>
-						<th scope="col">Date de Naissance</th>
-						<th scope="col">Numero de telephone</th>
-						<th scope="col">Adresse Email</th>
+						<th scope="col">Description</th>
+						<th scope="col">Contact</th>
+						<th scope="col">Localisation</th>
+						<th scope="col">Date d'ajout</th>
+						<th scope="col">Agent</th>
 						<th colspan='2' class='text-center'>Actions</th>
 					</tr>
 				</thead>
@@ -26,16 +26,17 @@
 	</body>
 </thead>
 <tbody>
-	{% for user in ListUsers %}
+	{% for list in EntrepriseList %}
 		<tr class="table-success">
 
-			<td>{{user.name}}</td>
-			<td>{{user.Prenom}}</td>
-			<td>{{user.datenaiss|date('Y-m-d')}}</td>
-			<td>{{user.telephone}}</td>
-			<td>{{user.email}}</td>
+			<td>{{list.nom}}</td>
+			<td>{{list.description}}</td>
+			<td>{{list.contact}}</td>
+			<td>{{list.Localisation}}</td>
+			<td>{{list.dateajout|date('Y-m-d')}}</td>
+			<td>{{list.users.id}}</td>
 			<td>
-				<a href="{{path('Edituser',{'id': user.id})}}" class="btn btn-warning">Modifier</a>
+				<a href="#" class="btn btn-warning">Modifier</a>
 			</td>
 			<td>
 				<a href="#" class="btn btn-danger">Supprimer</a>

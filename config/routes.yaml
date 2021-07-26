@@ -15,3 +15,12 @@ home:
 Userslist:
   path: Dashboard/Userslist
   controller: App\Controller\HomeController::userslist
+Edituser:
+  path: Dashboard/Edituser/{id}
+  controller: App\Controller\HomeController::edituser
+Entreprise:
+  path: Entreprise/new
+  controller: App\Controller\EntrepriseController::new
+EntrepriseList:
+  path: Entreprise/list
+  controller: App\Controller\EntrepriseController::list
