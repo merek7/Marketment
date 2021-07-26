@@ -9,7 +9,9 @@ logout:
 register:
   path: Inscription
   controller: App\Controller\RegistrationController::register
-
 home:
   path: Dashboard
   controller: App\Controller\HomeController::index
+Userslist:
+  path: Dashboard/Userslist
+  controller: App\Controller\HomeController::userslist

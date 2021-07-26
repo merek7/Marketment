@@ -56,15 +56,16 @@
 										Sign in
 									</button>
 								</div>
-
-								<div class="d-md-flex justify-content-between mt-4">
-									<div class="mb-2 mb-md-0">
-										<a href="{{ path('register')}}" class="fs-5">Creez un compte
-										</a>
-									</div>
-									<div>
-										<a href="forget-password.html" class="text-inherit fs-5">Forgot your password?</a>
-									</div>
+								{% if is_granted('ROLE_ADMIN') %}
+									<div class="d-md-flex justify-content-between mt-4">
+										<div class="mb-2 mb-md-0">
+											<a href="{{ path('register')}}" class="fs-5">Creez un compte
+											</a>
+										</div>
+										<div>
+											<a href="forget-password.html" class="text-inherit fs-5">Forgot your password?</a>
+										</div>
+									{% endif %}
 								</div>
 							</div>
 						</form>

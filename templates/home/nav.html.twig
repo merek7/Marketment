@@ -1,0 +1,96 @@
+<!-- Sidebar -->
+<nav class="navbar-vertical navbar">
+	<div
+		class="nav-scroller">
+		<!-- Brand logo -->
+		<a class="navbar-brand" href="../index.html">
+			<img src="{{asset('assets/img/logo.png')}}" alt=""/>
+		</a>
+		<!-- Navbar nav -->
+		<ul class="navbar-nav flex-column" id="sideNavbar">
+			<li class="nav-item">
+				<a class="nav-link has-arrow" href="{{path('home')}}">
+					<i data-feather="home" class="nav-icon icon-xs me-2"></i>
+					Acceuille
+				</a>
+			</li>
+
+			<li class="nav-item">
+				<div class="navbar-heading">Section</div>
+			</li>
+			<li class="nav-item mb-1">
+				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+					Marketeurs
+				</button>
+				<div class="collapse show" id="home-collapse">
+					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+						<li class="nav-item">
+							<a href="{{path('Userslist')}}" class="nav-link rounded">Liste des Agents</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link rounded">Updates</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link  rounded">Reports</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav-item mb-1">
+				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#enterprise-collapse" aria-expanded="false">
+					Entreprises
+				</button>
+				<div class="collapse" id="enterprise-collapse">
+					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+						<li class="nav-item">
+							<a href="#" class="nav-link rounded">Overview</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link rounded">Updates</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link  rounded">Reports</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<li class="nav-item mb-1">
+				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#raport-collapse" aria-expanded="false">
+					Rapports
+				</button>
+				<div class="collapse" id="raport-collapse">
+					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+						<li class="nav-item">
+							<a href="#" class="nav-link rounded">Overview</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link rounded">Updates</a>
+						</li>
+						<li class="nav-item">
+							<a href="#" class="nav-link  rounded">Reports</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+			<!-- Nav item -->
+		</ul>
+	</div>
+</nav>
+<div id="page-content">
+	<div
+		class="header @@classList">
+		<!-- navbar -->
+		<nav class="navbar-classic navbar navbar-expand-lg">
+			<a id="nav-toggle" href="#">
+				<i data-feather="menu" class="nav-icon me-2 icon-xs"></i>
+			</a>
+			<div
+				class="ms-lg-3 d-none d-md-none d-lg-block">
+				<!-- Form -->
+				<form class="d-flex align-items-center">
+					<input type="search" class="form-control" placeholder="Search"/>
+				</form>
+			</div>
+			<!--Navbar nav -->
+		</nav>
+	</div>

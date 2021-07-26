@@ -54,6 +54,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $roleid;
+
+    public function __toString()
+    {
+        return $this->datenaiss;
+    }
 
     public function getId(): ?int
     {
@@ -127,7 +136,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+
 
         return array_unique($roles);
     }
@@ -202,6 +211,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTelephone($telephone)
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of roleid
+     */
+    public function getRoleid()
+    {
+        return $this->roleid;
+    }
+
+
+    public function setRoleid($roleid)
+    {
+        $this->roleid = $roleid;
 
         return $this;
     }
