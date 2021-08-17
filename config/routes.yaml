@@ -1,26 +1,66 @@
 index:
   path: /
   controller: App\Controller\SecurityController::login
-
+login:
+  path: login
+  controller: App\Controller\SecurityController::login
 logout:
   path: logout
   controller: App\Controller\SecurityController::logout
-
-register:
-  path: Inscription
-  controller: App\Controller\RegistrationController::register
 home:
   path: Dashboard
   controller: App\Controller\HomeController::index
+userhome:
+  path: DashboardUser
+  controller: App\Controller\HomeController::userindex
+Users:
+  path: Dashbord/Users/new
+  controller: App\Controller\RegistrationController::register
 Userslist:
-  path: Dashboard/Userslist
+  path: Dashboard/Users/list
   controller: App\Controller\HomeController::userslist
-Edituser:
+UsersEdit:
   path: Dashboard/Edituser/{id}
   controller: App\Controller\HomeController::edituser
 Entreprise:
-  path: Entreprise/new
+  path: Dashboard/Entreprise/new
   controller: App\Controller\EntrepriseController::new
 EntrepriseList:
-  path: Entreprise/list
+  path: Dashboard/Entreprise/list
   controller: App\Controller\EntrepriseController::list
+EntrepriseListByUser:
+  path: Dashboard/Entreprise/listbyuser
+  controller: App\Controller\EntrepriseController::userlist
+EntrepriseListprint:
+  path: Dashboard/Entreprise/listprint
+  controller: App\Controller\EntrepriseController::print
+EntrepriseListprintByUser:
+  path: Dashboard/Entreprise/listprintByuser
+  controller: App\Controller\EntrepriseController::printbyuser
+EntrepriseEdit:
+  path: Dashboard/Entreprise/edit/{id}
+  controller: App\Controller\EntrepriseController::edit
+Prospection:
+  path: Dashboard/Prospection/new
+  controller: App\Controller\ProspectionController::new
+ProspectionList:
+  path: Dashboard/Prospection/list
+  controller: App\Controller\ProspectionController::list
+ProspectionListByUser:
+  path: Dashboard/Prospection/listbyuser
+  controller: App\Controller\ProspectionController::userlist
+ProspectionEdit:
+  path: Dashboard/Prospection/edit/{id}
+  controller: App\Controller\ProspectionController::edit
+Rdv:
+  path: Dashboard/Rdv/new
+  controller: App\Controller\RdvController::new
+RdvList:
+  path: Dashboard/Rdv/list
+  controller: App\Controller\RdvController::list
+RdvListByUser:
+  path: Dashboard/Rdv/listbyuser
+  controller: App\Controller\RdvController::userlist
+RdvEdit:
+  path: Dashboard/Rdv/edit/{id}
+  controller: App\Controller\RdvController::edit

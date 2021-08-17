@@ -2,24 +2,22 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 		<title>
 			{% block title %}Welcome!
 			{% endblock %}
 		</title>
 		{# Run `composer require symfony/webpack-encore-bundle`
-																																				and uncomment the following Encore helpers to start using Symfony UX #}
+																																														and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			{#{{ encore_entry_link_tags('app') }}#}
+			<link rel="shortcut icon" href="{{asset('assets/img/logo.png')}}" type="image/x-icon">
 			<link
 			rel="stylesheet" href="{{asset('assets/css/theme.min.css')}}">
 			{# <link rel="stylesheet" href="{{asset('assets/css/style.css')}}"> #}
 			<link rel="stylesheet" href="{{asset('assets/css/main.css')}}">
 			<link rel="stylesheet" href="{{asset('assets/fonts/bootstrap-icons/bootstrap-icons.css')}}">
-			<svg xmlns="http://www.w3.org/2000/svg" style="display:none;">
-				<symbol id="chevron-right" viewbox="0 0 16 16">
-					<path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-				</symbol>
-			</svg>
+
 		{% endblock %}
 
 	</head>
@@ -27,6 +25,7 @@
 		{% block body %}{% endblock %}
 	</body>
 	{% block javascripts %}
+
 		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 		<script src="{{asset('assets/js/theme.min.js')}}"></script>
 		{#{{ encore_entry_script_tags('app') }}#}

@@ -4,12 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<body>
-		<div
-			id="db-wrapper">
-			<!-- navbar vertical -->
-			{% include 'home/nav.html.twig' %}
-			{% include 'home/content.html.twig' %}
-		</div>
-	</body>
-</div></body>{% endblock %}{% block javascript %}<script src="{{asset('assets/js/feather/dist/feather.js')}}"></script>{% endblock %}
+
+	{% include 'home/nav.html.twig' %}
+	{% include 'home/content.html.twig' %}
+</div></body></div></body>{% endblock %}{% block javascript %}<script src="{{asset('assets/js/feather/dist/feather.js')}}"></script>{% endblock %}

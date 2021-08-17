@@ -3,45 +3,93 @@
 {% block title %}Liste des Entreprise
 {% endblock %}
 {% block body %}
-	<body>
-		<div
-			id="db-wrapper">
-			<!-- navbar vertical -->
-			{% include 'home/nav.html.twig' %}
-			<h1 class="display-2 text-center">Liste des Entreprise</h1>
-			<table class="table table-bordered ">
-				<thead>
-					<tr class="table-secondary">
-						<th scope="col">Nom</th>
-						<th scope="col">Description</th>
-						<th scope="col">Contact</th>
-						<th scope="col">Localisation</th>
-						<th scope="col">Date d'ajout</th>
-						<th scope="col">Agent</th>
+
+	<!-- navbar vertical -->
+	{% include 'home/nav.html.twig' %}
+	<div class="card-header align-items-center text-center">
+		<h1 class="display-2 ">Liste des Entreprises
+		</h1>
+	</div>
+	<pre>
+	
+	</pre>
+	<div class="card-header d-flex flex-row-reverse  align-items-center text-center">
+		{% if user == true %}
+			<a href="{{path('EntrepriseListprintByUser')}}" class="btn btn-white m-1 ">
+				<i class="bi bi-download"></i>
+				Telecharger
+			</a>
+		{% else %}
+			<a href="{{path('EntrepriseListprint')}}" class="btn btn-white m-1 ">
+				<i class="bi bi-download"></i>
+				Telecharger
+			</a>
+		{% endif %}
+		<a href="{{path('Entreprise')}}" class="btn btn-info">
+			<i class="bi bi-person-plus-fill"></i>
+			Ajouter une entreprise
+		</a>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-bordered ">
+			<thead>
+				<tr class="table-secondary">
+					<th scope="col">Nom</th>
+					<th scope="col">Description</th>
+					<th scope="col">Contact</th>
+					<th scope="col">Localisation</th>
+					<th scope="col">Date d'ajout</th>
+					<th scope="col">Statut</th>
+					<th scope="col">Agent</th>
+					<th scope="col">Prospection</th>
+					{% if is_granted('ROLE_ADMIN') %}
 						<th colspan='2' class='text-center'>Actions</th>
-					</tr>
-				</thead>
-			</tr>
-		</thead>
-	</body>
-</thead>
-<tbody>
-	{% for list in EntrepriseList %}
-		<tr class="table-success">
+					{% endif %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for list in EntrepriseList %}
+					<tr class="table-primary text-justify">
 
-			<td>{{list.nom}}</td>
-			<td>{{list.description}}</td>
-			<td>{{list.contact}}</td>
-			<td>{{list.Localisation}}</td>
-			<td>{{list.dateajout|date('Y-m-d')}}</td>
-			<td>{{list.users.id}}</td>
-			<td>
-				<a href="#" class="btn btn-warning">Modifier</a>
-			</td>
-			<td>
-				<a href="#" class="btn btn-danger">Supprimer</a>
-			</td>
-
-		</tr>
-	{% endfor %}
-</tbody></tr></body></tbody></table></body></div></body></div></body> {% endblock %}
+						<td>{{list.nom}}</td>
+						<td>{{list.description}}</td>
+						<td>{{list.contact}}</td>
+						<td>{{list.Localisation}}</td>
+						<td>{{list.dateajout|date('d M Y H:i')}}</td>
+						{% if list.etat ==1 %}
+							<td>
+								<button class="btn btn-success bi bi-patch-check-fill"></button>
+							</td>
+						{% else %}
+							<td>
+								<button class="btn btn-secondary bi bi-patch-check"></button>
+							</td>
+						{% endif %}
+						<td>
+							{{list.users.name}}
+							{{list.users.prenom}}
+						</td>
+						{% if list.prospects.snapshot !=null %}
+							<td class="text-center">
+								<button class="btn btn-success bi bi-patch-check-fill"></button>
+							</td>
+						{% else %}
+							<td class="text-center">
+								<button class="btn btn-secondary bi bi-patch-check"></button>
+							</td>
+						{% endif %}
+						{% if is_granted('ROLE_ADMIN') %}
+							<td class="text-center">
+								<a href="{{path('EntrepriseEdit' ,{'id':list.id})}}" class="btn btn-warning">Modifier</a>
+							</td>
+							<td class="text-center">
+								<a href="#" class="btn btn-danger">Supprimer</a>
+							</td>
+						{% endif %}
+					{% endfor %}
+				</tr>
+			</tbody>
+		</tbody>
+	</table>
+	{{knp_pagination_render(EntrepriseList, 'home/pagination.html.twig')}}
+</div>{% endblock %}

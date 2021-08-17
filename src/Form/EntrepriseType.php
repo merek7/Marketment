@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Entreprise;
 use Symfony\Component\Form\AbstractType;
-
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -20,6 +20,18 @@ class EntrepriseType extends AbstractType
             ->add('Description', TextareaType::class)
             ->add('Contact', TelType::class)
             ->add('Localisation')
+            ->add(
+                'etat',
+                ChoiceType::class,
+                [
+                    'choices' => [
+                        'Verifier' => true,
+                        'Non verifier' => false,
+                    ],
+                    'expanded' => true,
+                    'multiple' => false,
+                ]
+            )
             ->add('Ajouter', SubmitType::class);
     }
 

@@ -1,96 +1,183 @@
 <!-- Sidebar -->
-<nav class="navbar-vertical navbar">
-	<div
-		class="nav-scroller">
-		<!-- Brand logo -->
-		<a class="navbar-brand" href="../index.html">
-			<img src="{{asset('assets/img/logo.png')}}" alt=""/>
-		</a>
-		<!-- Navbar nav -->
-		<ul class="navbar-nav flex-column" id="sideNavbar">
-			<li class="nav-item">
-				<a class="nav-link has-arrow" href="{{path('home')}}">
-					<i data-feather="home" class="nav-icon icon-xs me-2"></i>
-					Acceuille
-				</a>
-			</li>
+<div id="db-wrapper">
 
-			<li class="nav-item">
-				<div class="navbar-heading">Section</div>
-			</li>
-			<li class="nav-item mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-					Marketeurs
-				</button>
-				<div class="collapse show" id="home-collapse">
-					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-						<li class="nav-item">
-							<a href="{{path('register')}}" class="nav-link rounded">Ajouter un agents</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{path('Userslist')}}" class="nav-link rounded">Liste des Agents</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link  rounded">Reports</a>
-						</li>
-					</ul>
-				</div>
-			</li>
-			<li class="nav-item mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#enterprise-collapse" aria-expanded="false">
-					Entreprises
-				</button>
-				<div class="collapse" id="enterprise-collapse">
-					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-						<li class="nav-item">
-							<a href="{{path('Entreprise')}}" class="nav-link rounded">Ajouter une entreprise</a>
-						</li>
-						<li class="nav-item">
-							<a href="{{path('EntrepriseList')}}" class="nav-link rounded">Liste des entreprises</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link  rounded">Reports</a>
-						</li>
-					</ul>
-				</div>
-			</li>
-			<li class="nav-item mb-1">
-				<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#raport-collapse" aria-expanded="false">
-					Rapports
-				</button>
-				<div class="collapse" id="raport-collapse">
-					<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
-						<li class="nav-item">
-							<a href="#" class="nav-link rounded">Overview</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link rounded">Updates</a>
-						</li>
-						<li class="nav-item">
-							<a href="#" class="nav-link  rounded">Reports</a>
-						</li>
-					</ul>
-				</div>
-			</li>
-			<!-- Nav item -->
-		</ul>
-	</div>
-</nav>
-<div id="page-content">
-	<div
-		class="header @@classList">
-		<!-- navbar -->
-		<nav class="navbar-classic navbar navbar-expand-lg">
-			<a id="nav-toggle" href="#">
-				<i data-feather="menu" class="nav-icon me-2 icon-xs"></i>
+	<nav class="navbar-vertical navbar">
+		<div
+			class="nav-scroller">
+			<!-- Brand logo -->
+			<a class="navbar-brand" href="../index.html">
+				<img src="{{asset('assets/img/logo.png')}}" alt=""/>
 			</a>
-			<div
-				class="ms-lg-3 d-none d-md-none d-lg-block">
-				<!-- Form -->
-				<form class="d-flex align-items-center">
-					<input type="search" class="form-control" placeholder="Search"/>
-				</form>
-			</div>
-			<!--Navbar nav -->
-		</nav>
-	</div>
+			<!-- Navbar nav -->
+			<ul class="navbar-nav flex-column" id="sideNavbar">
+
+				<li class="nav-item">
+					{% if is_granted('ROLE_ADMIN') %}
+						<a class="nav-link has-arrow" href="{{path('home')}}">
+							<i class="me-2 bi bi-speedometer"></i>
+							Tableau de bord
+						</a>
+					{% endif %}
+					<a class="nav-link has-arrow" href="{{path('userhome')}}">
+						<i class="me-2 bi bi-house"></i>
+						Acceuille
+					</a>
+				</li>
+
+
+				{% if is_granted('ROLE_ADMIN') %}
+					<li class="nav-item mb-1">
+						<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+							Marketeurs
+						</button>
+						<div class="collapse show" id="home-collapse">
+							<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+								<li class="nav-item">
+									<a href="{{path('Users')}}" class="nav-link rounded">Ajouter un agents</a>
+								</li>
+								<li class="nav-item">
+									<a href="{{path('Userslist')}}" class="nav-link rounded">Liste des Agents</a>
+								</li>
+								<li class="nav-item">
+									<a href="#" class="nav-link  rounded">Reports</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				{% endif %}
+				<li class="nav-item mb-1">
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#enterprise-collapse" aria-expanded="false">
+						Entreprises
+					</button>
+					<div class="collapse show" id="enterprise-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+							<li class="nav-item">
+								<a href="{{path('Entreprise')}}" class="nav-link rounded">Ajouter une entreprise</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{path('EntrepriseListByUser')}}" class="nav-link rounded">Mes entreprises</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{path('EntrepriseList')}}" class="nav-link rounded">Liste des entreprises</a>
+							</li>
+
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item mb-1">
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#raport-collapse" aria-expanded="false">
+						Prospection
+					</button>
+					<div class="collapse show" id="raport-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+							<li class="nav-item">
+								<a href="{{path('ProspectionListByUser')}}" class="nav-link rounded">Mes prospections</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{path('ProspectionList')}}" class="nav-link rounded">Liste des prospections</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link  rounded">Reports</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<li class="nav-item mb-1">
+					<button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#raport-collapse" aria-expanded="false">
+						Rendez-vous
+					</button>
+					<div class="collapse show" id="raport-collapse">
+						<ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
+							<li class="nav-item">
+								<a href="{{path('RdvListByUser')}}" class="nav-link rounded">Mes Rendez-vous</a>
+							</li>
+							<li class="nav-item">
+								<a href="{{path('RdvList')}}" class="nav-link rounded">Liste des Rendez-vous</a>
+							</li>
+							<li class="nav-item">
+								<a href="#" class="nav-link  rounded">Reports</a>
+							</li>
+						</ul>
+					</div>
+				</li>
+				<!-- Nav item -->
+			</ul>
+		</div>
+	</nav>
+	<div id="page-content">
+		<div
+			class="header">
+			<!-- navbar -->
+			<nav class="navbar-classic navbar navbar-expand-lg">
+				<a id="nav-togle" href="#">
+					<i class="nav-icon me-2 icon-xs bi bi-list"></i>
+				</a>
+				<div
+					class="ms-lg-3 d-none d-md-none d-lg-block">
+					<!-- Form -->
+					<form class="d-flex align-items-center">
+						<input type="search" class="form-control" placeholder="Search"/>
+					</form>
+				</div>
+				<ul class="navbar-nav navbar-right-wrap ms-auto d-flex nav-top-wrap">
+					<li class="dropdown stopevent">
+
+						<div class="dropdown-menu dropdown-menu-lg dropdown-menu-end" aria-labelledby="dropdownNotification">
+							<div class="">
+								<div class="border-bottom px-3 pt-2 pb-3 d-flex
+																																																																																																																																																																																																																																																																																																		              justify-content-between align-items-center">
+									<p class="mb-0 text-dark fw-medium fs-4">Notifications</p>
+									<a href="#" class="text-muted">
+										<span>
+											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings me-1 icon-xxs">
+												<circle cx="12" cy="12" r="3"></circle>
+												<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+											</svg>
+										</span>
+									</a>
+								</div>
+								<!-- List group -->
+								<div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 300px;">
+									<ul
+										class="list-group list-group-flush notification-list-scroll" style="overflow: hidden; width: auto; height: 300px;">
+										<!-- List group item -->
+										<li class="list-group-item bg-light"></li>
+										<!-- List group item -->
+										<li class="list-group-item"></li>
+										<!-- List group item -->
+										<li class="list-group-item"></li>
+									</ul>
+									<div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 227.848px;"></div>
+									<div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+					<!-- List -->
+					<li class="dropdown ms-2">
+						<a class="rounded-circle" href="#" role="button" id="dropdownUser" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<div class="avatar avatar-md avatar-indicators avatar-online">
+								<img alt="avatar" src="https://via.placeholder.com/32" class="rounded-circle">
+							</div>
+						</a>
+						<div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
+							<div class="px-4 pb-0 pt-2">
+								<div class="lh-1 ">
+									<h5 class="mb-1"></h5>
+									<a href="#" class="text-inherit fs-6">View my profile</a>
+								</div>
+								<div class=" dropdown-divider mt-3 mb-2"></div>
+							</div>
+
+							<ul class="list-unstyled">
+								<li>
+									<a class="dropdown-item" href="{{path('logout')}}">Deconnexion</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<!--Navbar nav -->
+			</nav>
+		</div>

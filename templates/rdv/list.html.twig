@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Liste des Rendez-vous
+{% endblock %}
+{% block body %}
+	<!-- navbar vertical -->
+	{% include 'home/nav.html.twig' %}
+	{% for message in app.flashes('message') %}
+		<div class="alert alert-success text-center" role="alert">
+			{{message}}
+		</div>
+	{% endfor %}
+	<div class="card-header d-flex justify-content-between align-items-center text-center">
+		<h1 class="display-2 ">Rapport des Rendez-vous
+		</h1>
+		<a href="{{path('Rdv')}}" class="btn btn-info ">
+			<i class="bi bi-person-plus-fill"></i>
+			Ajouter un rendez-vous
+		</a>
+	</div>
+	<div class="table-responsive text-justify">
+		<table class="table table-bordered ">
+			<thead>
+				<tr class="table-secondary">
+					<th scope="col">Entreprise</th>
+					<th scope="col">Description</th>
+					<th scope="col">Lieux</th>
+					<th scope="col">Date</th>
+					<th scope="col">Heure</th>
+					<th scope="col">Etat</th>
+					<th scope="col">Agent</th>
+
+					{% if is_granted('ROLE_ADMIN') %}
+						<th colspan='2' class='text-center'>Actions</th>
+					{% endif %}
+				</tr>
+			</thead>
+			<tbody>
+				{% for list in Rdvlist %}
+
+					<tr class="table-primary">
+						<td>{{list.prospects.entreprises.nom}}</td>
+						<td>{{list.prospects.description}}</td>
+						<td>{{list.Lieux}}</td>
+						<td>{{list.Date|date('d-M-Y')}}</td>
+						<td>{{list.Date|date('H:i')}}</td>
+						<td>{{list.etat}}</td>
+						<td>{{list.prospects.entreprises.users.name}}</td>
+
+						{% if is_granted('ROLE_ADMIN') %}
+							<td class="text-center">
+								<a href="{{path('RdvEdit' ,{'id':list.id})}}" class="btn btn-warning">Modifier</a>
+							</td>
+							<td class="text-center">
+								<a href="#" class="btn btn-danger">Supprimer</a>
+							</td>
+						{% endif %}
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		<div class="pagination justify-content-center">
+			{{knp_pagination_render(Rdvlist, 'home/pagination.html.twig')}}
+		</div>
+	</div>
+{% endblock %}

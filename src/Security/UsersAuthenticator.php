@@ -23,10 +23,12 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'index';
 
     private UrlGeneratorInterface $urlGenerator;
+    private $security;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(UrlGeneratorInterface $urlGenerator, Security $security)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->security = $security;
     }
 
     public function authenticate(Request $request): PassportInterface
@@ -49,9 +51,12 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
         // For example:
+        if (implode($this->security->getUser()->getRoles()) == "ROLE_USER") {
+            return new RedirectResponse($this->urlGenerator->generate('userhome'));
+        }
         return new RedirectResponse($this->urlGenerator->generate('home'));
+
         throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
     }
 

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Select;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -40,6 +41,15 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $query = $this->createQueryBuilder('a');
         $query->select('COUNT(a.id) as value');
         return $query->getQuery()->getOneOrNullResult();
+    }
+    public function UsernameToID(String $email)
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u.id')
+            ->where('u.email = :val')
+            ->setParameter('val', $email)
+            ->getQuery()
+            ->getResult();
     }
     public function ListUsersByRole()
     {

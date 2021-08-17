@@ -1,8 +1,9 @@
 .main
 {
     /* background-color: #d9232d; */
-    background-color: #2d2d2d;
+    background-color: #2d2d2d ;
 }
+
 .btn-toggle {
     display: inline-flex;
     align-items: center;
@@ -45,9 +46,8 @@
     background-color: #2d2d2d;
   }
   
-  .scrollarea {
-    overflow-y: auto;
-  }
+
   
   .fw-semibold { font-weight: 600; }
   .lh-tight { line-height: 1.25; }
+

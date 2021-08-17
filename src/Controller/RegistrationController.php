@@ -16,6 +16,7 @@ class RegistrationController extends AbstractController
 
     public function register(Request $request, UserPasswordHasherInterface $passwordhash): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -61,10 +62,10 @@ class RegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
             $this->addFlash('success', 'utilisateur bien enregistrer');
-            return $this->redirectToRoute('register');
+            return $this->redirectToRoute('home');
         }
 
-        return $this->render('registration/register.html.twig', [
+        return $this->render('user/new.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

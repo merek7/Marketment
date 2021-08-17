@@ -3,10 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\EntrepriseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass=EntrepriseRepository::class)
+ *  
+ *@UniqueEntity(fields={"Nom"}, message="L'entreprises est deja enregistrer")
+
+ * 
  */
 class Entreprise
 {
@@ -18,7 +26,7 @@ class Entreprise
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=50, unique=true)
      */
     private $Nom;
 
@@ -34,6 +42,7 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=150)
+     * 
      */
     private $Localisation;
 
@@ -47,6 +56,26 @@ class Entreprise
      * @ORM\JoinColumn(nullable=false)
      */
     private $users;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $Etat;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Prospect::class, mappedBy="entreprises" )
+     */
+    private $prospects;
+
+    public function __construct()
+    {
+        $this->prospects = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->Nom;
+    }
 
     public function getId(): ?int
     {
@@ -121,6 +150,48 @@ class Entreprise
     public function setUsers(?User $users): self
     {
         $this->users = $users;
+
+        return $this;
+    }
+
+    public function getEtat(): ?bool
+    {
+        return $this->Etat;
+    }
+
+    public function setEtat(bool $Etat): self
+    {
+        $this->Etat = $Etat;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Prospect[]
+     */
+    public function getProspects(): Collection
+    {
+        return $this->prospects;
+    }
+
+    public function addProspect(Prospect $prospect): self
+    {
+        if (!$this->prospects->contains($prospect)) {
+            $this->prospects[] = $prospect;
+            $prospect->setEntreprises($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProspect(Prospect $prospect): self
+    {
+        if ($this->prospects->removeElement($prospect)) {
+            // set the owning side to null (unless already changed)
+            if ($prospect->getEntreprises() === $this) {
+                $prospect->setEntreprises(null);
+            }
+        }
 
         return $this;
     }

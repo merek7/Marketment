@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tableau de bord
+{% endblock %}
+
+{% block body %}
+
+
+	{% include 'home/nav.html.twig' %}
+
+
+	<div class="card-header d-flex justify-content-between align-items-center">
+		<h1 class="display-2 ">Liste des Agents Marketing
+		</h1>
+		<a href="{{path('Users')}}" class="btn btn-info ">
+			<i class="bi bi-person-plus-fill"></i>
+			Ajouter un Agents
+		</a>
+	</div>
+	<div class="table-responsive">
+		<table class="table ">
+			<thead>
+				<tr class="table-secondary">
+					<th scope="col">Nom</th>
+					<th scope="col">Prenom</th>
+					<th scope="col">Date de Naissance</th>
+					<th scope="col">Numero de telephone</th>
+					<th scope="col">Adresse Email</th>
+					<th colspan='2' class='text-center'>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in ListUsers %}
+					<tr class="table-success">
+						<td>{{user.name}}</td>
+						<td>{{user.Prenom}}</td>
+						<td>{{user.datenaiss|date('Y-m-d')}}</td>
+						<td>{{user.telephone}}</td>
+						<td>{{user.email}}</td>
+						<td>
+							<a href="{{path('UsersEdit',{'id': user.id})}}" class="btn btn-warning">Modifier</a>
+						</td>
+						<td>
+							<a href="#" class="btn btn-danger">Supprimer</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>{% endblock %}

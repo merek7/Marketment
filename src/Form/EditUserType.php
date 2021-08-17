@@ -20,7 +20,13 @@ class EditUserType extends AbstractType
         $builder
             ->add('name')
             ->add('prenom')
-            ->add('datenaiss', DateType::class)
+            ->add(
+                'datenaiss',
+                DateType::class,
+                [
+                    'widget' => 'single_text',
+                ]
+            )
             ->add('telephone')
             ->add(
                 'email',
